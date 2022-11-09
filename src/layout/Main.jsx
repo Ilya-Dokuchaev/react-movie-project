@@ -35,16 +35,8 @@ export class Main extends React.Component{
     render() {
         const {movies,loading} = this.state
         return<main className='container content'>
-            {
-                !loading ? (
-                   <>
                        <Search searchMovies={this.searchMovies}/>
-                       <Movies movies = {movies}/>
-
-                   </>
-                ):<Preloader/>
-
-            }
+            {loading ? <Preloader/>:<Movies movies = {movies}/>}
         </main>
 
     }

@@ -39,7 +39,7 @@ export class Search extends React.Component{
                         className="with-gap"
                         name="type"
                         type="radio"
-                        data-type={'all'}
+                        data-type='all'
                         onChange={this.handleType}
                         checked={this.state.type === 'all'}
                     />
@@ -50,7 +50,7 @@ export class Search extends React.Component{
                         className="with-gap"
                         name="type"
                         type="radio"
-                        data-type={'movie'}
+                        data-type='movie'
                         onChange={this.handleType}
                         checked={this.state.type === 'movie'}
                     />
@@ -61,7 +61,7 @@ export class Search extends React.Component{
                         className="with-gap"
                         name="type"
                         type="radio"
-                        data-type={'series'}
+                        data-type='series'
                         onChange={this.handleType}
                         checked={this.state.type === 'series'}
                     />
