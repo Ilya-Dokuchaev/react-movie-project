@@ -1,25 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 
-export class Search extends React.Component{
+export const Search = (props) => {
+    const {
+        searchMovies = Function.prototype,
+    } = props
 
-    state ={
-        search:'',
-        type:'all'
-    }
+    const [search,setSearch] = useState('')
+    const [type,setType] = useState('all')
 
-    handleKey = (event) =>{
+   const handleKey = (event) =>{
         if(event.key==='Enter'){
-            this.props.searchMovies(this.state.search)
+            searchMovies(search,type)
         }
     }
-    handleType = (event) =>{
-        this.setState(()=>({type: event.target.dataset.type}),()=>{
-        this.props.searchMovies(this.state.search, this.state.type)
-
-        })
+    const handleType = (event) =>{
+        setType(event.target.dataset.type)
+        searchMovies(search,event.target.dataset.type)
     }
-
-    render() {
 
         return <div className="row">
 
@@ -28,11 +25,11 @@ export class Search extends React.Component{
                     placeholder={'search'}
                     type="search"
                     className="validate"
-                    value={this.state.search}
-                    onKeyDown={this.handleKey}
-                    onChange={(e)=>this.setState({search:e.target.value})}
+                    value={search}
+                    onKeyDown={handleKey}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className={'btn search-btn'} onClick={()=> this.props.searchMovies(this.state.search, this.state.type)}>Search</button>
+                <button className={'btn search-btn'} onClick={()=> searchMovies(search, type)}>Search</button>
             </div>
                 <label>
                     <input
@@ -40,8 +37,8 @@ export class Search extends React.Component{
                         name="type"
                         type="radio"
                         data-type='all'
-                        onChange={this.handleType}
-                        checked={this.state.type === 'all'}
+                        onChange={handleType}
+                        checked={type === 'all'}
                     />
                     <span>All</span>
                 </label>
@@ -51,8 +48,8 @@ export class Search extends React.Component{
                         name="type"
                         type="radio"
                         data-type='movie'
-                        onChange={this.handleType}
-                        checked={this.state.type === 'movie'}
+                        onChange={handleType}
+                        checked={type === 'movie'}
                     />
                     <span>Movies</span>
                 </label>
@@ -62,11 +59,10 @@ export class Search extends React.Component{
                         name="type"
                         type="radio"
                         data-type='series'
-                        onChange={this.handleType}
-                        checked={this.state.type === 'series'}
+                        onChange={handleType}
+                        checked={type === 'series'}
                     />
                     <span>Series</span>
                 </label>
         </div>
-    }
 }
